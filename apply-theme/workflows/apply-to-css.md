@@ -70,10 +70,10 @@ Procédure :
    Récupérer la sortie ligne par ligne. **Ne jamais calculer OKLCH à la main** — utiliser le script (cf. `oklch-conversion.md`).
 3. Pour chaque token shadcn non explicite : dériver selon `shadcn-tokens.md` (light scope, puis dark scope). Si la dérivation produit une couleur en hex (peu probable, plutôt en OKLCH direct), reconvertir via le script.
 4. Lire `--radius` depuis section Components ; défaut `0.625rem` si absent
-5. Lire `--font-sans` / `--font-mono` depuis section Typography ; défauts si absents
-6. Émettre le bloc `:root` (22 tokens)
-7. Émettre le bloc `.dark` (19 tokens couleurs uniquement — pas radius/fonts qui restent au :root)
-8. Émettre le bloc `@theme inline` (24 mappings invariants, copier-coller depuis `css-mapping.md`)
+5. Lire `--font-sans` / `--font-mono` / `--font-heading` depuis section Typography ; défauts si absents
+6. Émettre le bloc `:root` (32 tokens : 18 core + 5 chart + 8 sidebar + 1 radius, plus 3 fonts stacks)
+7. Émettre le bloc `.dark` (31 tokens couleurs : 18 core + 5 chart + 8 sidebar — radius et fonts restent au :root)
+8. Émettre le bloc `@theme inline` (44 mappings invariants, copier-coller depuis `css-mapping.md`)
 9. Si section Motion non vide : émettre `@theme { --duration-* / --ease-* }`
 10. Si section Typography contient `display` : ajouter `--font-display` dans `@theme`
 11. Si section Spacing & Grid contient un delta vs défaut : ajouter `--spacing` dans `@theme`
@@ -88,9 +88,9 @@ Read src/styles/globals.css
 Sur le contenu relu, vérifier :
 - Première ligne : commentaire `/* Theme: ... */`
 - Présence de `@import 'tailwindcss';`
-- `:root { ... }` contient les 22 tokens (grep chaque nom canonique)
-- `.dark { ... }` contient les 19 tokens couleurs
-- `@theme inline { ... }` contient les 24 mappings
+- `:root { ... }` contient les 32 tokens (18 core + 5 chart + 8 sidebar + 1 radius) + 3 fonts
+- `.dark { ... }` contient les 31 tokens couleurs (18 core + 5 chart + 8 sidebar)
+- `@theme inline { ... }` contient les 44 mappings
 - Toutes les valeurs couleur sont en `oklch(...)` (pas de `hsl()`, pas de `#`)
 
 Si une vérification échoue : corriger via `Edit` ciblé, re-vérifier.
@@ -99,7 +99,7 @@ Si une vérification échoue : corriger via `Edit` ciblé, re-vérifier.
 
 ```
 ✓ designs/active.md lu (<H1> — <category>)
-✓ src/styles/globals.css écrit (22 tokens × 2 scopes, OKLCH)
+✓ src/styles/globals.css écrit (32 tokens × 2 scopes, OKLCH)
 → Lance `pnpm dev` et ouvre /showcase pour valider
 → Itère via conversation ("primary plus chaud", "radius plus grand"...)
 ```

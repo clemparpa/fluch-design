@@ -135,7 +135,7 @@ Charger `workflows/apply-to-css.md` à partir de STEP 4. Le report STEP 6 mentio
 
 ```
 ✓ designs/active.md créé depuis .claude/skills/apply-theme/library/<slug>.md
-✓ src/styles/globals.css écrit (22 tokens × 2 scopes, OKLCH)
+✓ src/styles/globals.css écrit (32 tokens × 2 scopes, OKLCH)
 → Lance `pnpm dev` et ouvre /showcase pour valider
 → Demande des ajustements ("primary plus chaud") pour itérer
 ```

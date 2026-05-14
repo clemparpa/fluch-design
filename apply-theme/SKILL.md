@@ -2,7 +2,7 @@
 name: apply-theme
 description: |
   Génère, raffine ou applique un thème visuel pour le starter fluch-react-signals-starter
-  (Vite + Tailwind v4 + shadcn variant Base UI). N'édite QUE designs/active.md et
+  (Vite + Tailwind v4 + shadcn style new-york-v4). N'édite QUE designs/active.md et
   src/styles/globals.css. Déclenche quand l'user demande : créer/changer/raffiner
   un design system, partir d'un seed (.claude/skills/apply-theme/library/), tweaker un token
   ("primary plus chaud", "radius plus grand", "fond plus sombre"), appliquer un
@@ -128,7 +128,7 @@ Attendre la réponse de l'user. **Ne jamais** dériver le dark silencieusement.
 
 - `references/design-md-schema.md` — format des 9 sections du DESIGN.md
 - `references/css-mapping.md` — règles d'émission CSS et bloc `@theme inline` complet
-- `references/shadcn-tokens.md` — 22 tokens canoniques + règles de dérivation des non-explicites
+- `references/shadcn-tokens.md` — 32 tokens canoniques (18 core + 5 chart + 8 sidebar + 1 radius) + règles de dérivation
 - `references/oklch-conversion.md` — conversion hex/rgb → OKLCH
 
 Charger uniquement les références utiles au mode courant.

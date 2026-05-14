@@ -44,7 +44,11 @@ Dark:
 
 **Minimum requis : 4 tokens × 2 scopes** = primary, background, foreground, destructive — dans Light ET Dark.
 
-Tokens optionnels : `secondary`, `accent`, `muted`, `border`, `ring`, `card`, `popover`, `primary-foreground`, `destructive-foreground`, `secondary-foreground`, `accent-foreground`, `muted-foreground`, `card-foreground`, `popover-foreground`.
+Tokens optionnels core : `secondary`, `accent`, `muted`, `border`, `input`, `ring`, `card`, `popover`, `primary-foreground`, `destructive-foreground`, `secondary-foreground`, `accent-foreground`, `muted-foreground`, `card-foreground`, `popover-foreground`.
+
+Tokens optionnels charts (data-viz) : `chart-1`, `chart-2`, `chart-3`, `chart-4`, `chart-5`. Si non fournis, le skill garde les défauts shadcn (palette vibrante).
+
+Tokens optionnels sidebar : `sidebar`, `sidebar-foreground`, `sidebar-primary`, `sidebar-primary-foreground`, `sidebar-accent`, `sidebar-accent-foreground`, `sidebar-border`, `sidebar-ring`. Si non fournis, le skill garde les défauts shadcn (mini-palette neutre cohérente avec le core).
 
 Format de valeur : hex (`#RRGGBB`) ou OKLCH (`oklch(L C H)`).
 
@@ -59,12 +63,15 @@ Format :
 Font families:
 - sans: 'Inter', system-ui, sans-serif
 - mono: 'JetBrains Mono', ui-monospace, monospace
-- display: 'Playfair Display', serif   # optionnel
+- heading: 'Inter', system-ui, sans-serif   # optionnel, reprend `sans` si absent
+- display: 'Playfair Display', serif         # optionnel (= --font-display dans @theme)
 
-Weights: 400, 500, 600, 700           # optionnel
+Weights: 400, 500, 600, 700                  # optionnel
 ```
 
-Si la section est vide ou n'a pas de stack → défaut Inter + JetBrains.
+Si la section est vide ou n'a pas de stack → défaut Inter (sans + heading) + JetBrains (mono).
+
+`sans`, `mono`, `heading` sont émis dans `:root` (`--font-sans`, `--font-mono`, `--font-heading`) car référencés par le bloc `@theme inline` canonique de shadcn. `display` (optionnel) va dans un bloc `@theme` séparé sous `--font-display`.
 
 ### 4. `## Spacing & Grid`
 
