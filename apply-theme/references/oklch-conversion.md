@@ -9,7 +9,7 @@ node .claude/skills/apply-theme/tools/oklch.mjs "#635bff"
 # → oklch(0.578 0.235 278)
 ```
 
-Batch (recommandé pour convertir une section Color entière en un appel) :
+Batch (recommandé pour convertir `## 2. Color Palette & Roles` entière en un appel) :
 
 ```sh
 node .claude/skills/apply-theme/tools/oklch.mjs "#635bff" "#0a2540" "#df1b41" "#ffffff"
@@ -23,7 +23,7 @@ Le script accepte hex (`#RRGGBB`, `#RGB`) et `rgb()` / `rgba()`. Sortie : `oklch
 
 ## Procédure recommandée pour le workflow
 
-1. Lister TOUS les hex de la section Color du DESIGN.md (light + dark)
+1. Lister TOUS les hex/rgba de `## 2. Color Palette & Roles` du DESIGN.md (light sous-blocs + `### Dark Mode`)
 2. Un seul appel batch au script avec tous les hex dans l'ordre
 3. Mapper la sortie ligne par ligne aux noms de tokens correspondants
 4. Émettre les blocs `:root` et `.dark`
@@ -86,3 +86,18 @@ Si le script retourne autre chose, c'est un bug à signaler — pas une approxim
 - **`#ffffff`** (blanc) → `oklch(1.000 0.000 0)`
 - **Gris neutres** (R=G=B) → `oklch(L 0.000 0)` (chroma = 0)
 - **Couleurs nommées CSS** (ex `red`, `cornflowerblue`) → convertir d'abord en hex via la table CSS standard, puis appeler le script
+
+## rgba avec alpha < 1
+
+Les seeds au format open-design utilisent fréquemment des rgba transparents pour les textes (`rgba(0,0,0,0.80)` pour `### Text → Title`) et pour les borders dark (`rgba(255,255,255,0.10)` pour `### Dark Mode → Separator`).
+
+`oklch.mjs` parse l'alpha mais ne le préserve PAS dans la sortie. Pour ces cas :
+
+- **Texte translucide sur fond solide** (typique : `rgba(0,0,0,0.80)` sur canvas blanc) : passer en `oklch(L 0 0 / A)` à la main, sans script. Les noirs/blancs translucides ont chroma 0, donc seul L et l'alpha comptent. Exemple :
+  - `rgba(0,0,0,0.80)` → `oklch(0 0 0 / 80%)`
+  - `rgba(255,255,255,0.10)` → `oklch(1 0 0 / 10%)`
+  - `rgba(48,48,52,0.05)` → `oklch(0.26 0.003 264 / 5%)` (passer la couleur sans alpha au script pour obtenir L/C/H, puis recoller l'alpha à la main)
+
+- Tailwind v4 et shadcn supportent nativement la syntaxe `oklch(L C H / <alpha>)` (decimal ou pourcentage).
+
+- Roadmap v2 : faire évoluer `oklch.mjs` pour préserver l'alpha en sortie. Tracker comme dette technique (cf. spec § Risques connus).

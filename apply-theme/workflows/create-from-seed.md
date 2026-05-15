@@ -74,24 +74,24 @@ Charger tout le contenu en mémoire.
 
 ## STEP 2 — Adapter si demande user
 
-### Cas A : "comme stripe" (sans adaptation)
-Copier le contenu du seed à l'identique dans `designs/active.md`. Ne rien modifier.
+### Cas A : « comme stripe » (sans adaptation)
+Copier le contenu du seed à l'identique dans `designs/active.md`. Ne rien modifier. Le seed est déjà au format canonique open-design, la copie est triviale.
 
-### Cas B : "comme stripe mais en sombre"
-- Ouvrir la section Color du seed
-- Inverser/adapter les valeurs Light pour devenir Dark si le seed était light-only
-- Si le seed contient déjà light+dark, garder dark tel quel, demander à l'user s'il veut adapter aussi le light
-- Préserver les 8 autres sections
+### Cas B : « comme stripe mais en sombre »
+- Ouvrir `## 2. Color Palette & Roles → ### Dark Mode` du seed
+- Si le seed n'a pas de `### Dark Mode`, inverser/adapter les valeurs des autres sous-blocs (Neutrals/Text) pour le construire
+- Si le seed contient déjà `### Dark Mode`, garder dark tel quel, demander à l'user s'il veut aussi adapter le light
+- Préserver les 8 autres sections H2
 
-### Cas C : "comme stripe avec primary vert"
-- Identifier le primary actuel du seed
+### Cas C : « comme stripe avec primary vert »
+- Identifier la puce primary actuelle dans `### Primary Brand` du seed
 - Remplacer par la valeur verte demandée (en hex) ou inférer (en signalant l'inférence)
-- Adapter le primary-foreground si nécessaire (cf. `references/shadcn-tokens.md`)
+- Faire la même substitution dans `### Dark Mode` si une puce Primary y figure
 - Préserver tout le reste
 
-### Cas D : "comme stripe, version éditoriale"
-- Modif plus large, toucher Typography (passer en serif) + Components (radius plus discret) + Voice & Brand
-- Toujours préserver le squelette des 9 sections
+### Cas D : « comme stripe, version éditoriale »
+- Modif plus large : toucher `## 3. Typography Rules → ### Font Family` (passer en serif) + `## 4. Component Stylings → Radius` (plus discret) + `## 9. Agent Prompt Guide` (voice plus éditoriale)
+- Toujours préserver le squelette des 9 sections numérotées et les sous-headings ### existants
 
 Dans tous les cas : **écrire le DESIGN.md complet**, pas un diff.
 
@@ -99,13 +99,14 @@ Dans tous les cas : **écrire le DESIGN.md complet**, pas un diff.
 
 Le seed peut être incomplet (pas de dark, fréquent dans certains catalogues). Après copie + adaptation :
 
-Si le DESIGN.md résultant n'a pas de `Dark:` complet dans Color (4 hex minimum) :
+Si la section `## 2. Color Palette & Roles` du DESIGN.md résultant n'a pas de sous-bloc `### Dark Mode` complet (4 valeurs colorimétriques minimum entre backticks) :
 ```
-Le seed "<slug>" n'a pas de palette dark complète. shadcn la requiert.
+Le seed "<slug>" n'a pas de palette dark complète (sous-bloc `### Dark Mode` manquant ou vide).
+shadcn la requiert.
 
 Tu veux :
-1. Me donner les hex dark
-2. Me laisser proposer + valider
+1. Me donner les hex dark (au minimum : Canvas, Title, Primary, Danger)
+2. Me laisser proposer un `### Dark Mode` cohérent + valider
 3. Abandonner
 
 (Auto-derive automatique pas disponible en v1.)

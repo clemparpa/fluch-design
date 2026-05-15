@@ -31,7 +31,7 @@ Source canonique : repo `shadcn-ui/ui`, `apps/v4/registry/_legacy-base-colors.ts
 | `--ring` | Focus ring | `oklch(0.708 0 0)` | `oklch(0.556 0 0)` |
 | `--radius` | Radius de base | `0.625rem` | (hérité du `:root`) |
 
-(DS) = doit être fourni par la section Color de `designs/active.md`. Les 4 obligatoires : `primary`, `background`, `foreground`, `destructive` — pour chacun des scopes light ET dark.
+(DS) = doit être fourni par `## 2. Color Palette & Roles` de `designs/active.md`. Les 4 obligatoires : `primary`, un background/canvas, un foreground/title, et un destructive/danger — light (sous-blocs Neutrals/Text/Semantic) et dark (`### Dark Mode`).
 
 > **Note `--destructive-foreground`** : vanilla `shadcn init` (new-york-v4) ne définit PAS cette var en `:root`/`.dark` (les composants destructive utilisent `text-white` direct dans leurs classes). Le skill l'émet quand même via la règle de dérivation, pour rendre les thèmes custom robustes — si l'utilisateur surcharge `--destructive`, la paire foreground reste cohérente même si un composant tiers la consomme.
 
@@ -101,13 +101,13 @@ Si non fourni → défauts du tableau. **Jamais dérivé du primary.** En dark, 
 Si non fourni → défaut gris neutre (`oklch(0.708 0 0)` light / `oklch(0.556 0 0)` dark). **C'est le défaut shadcn**, indépendant de `--primary`. Une dérivation depuis primary est possible mais doit être explicite dans DESIGN.md.
 
 ### `--radius`
-Si la section Components de DESIGN.md ne précise pas → défaut `0.625rem`.
+Si `## 4. Component Stylings` de DESIGN.md ne précise pas → défaut `0.625rem`.
 
 ### Charts et sidebar (5 + 8 vars)
 Si non fournis → défauts des tableaux §2 et §3. Pour ne pas réinventer une palette de charts à chaque thème, garder les défauts shadcn sauf demande explicite. Pour la sidebar, les défauts forment une mini-palette neutre cohérente avec le core — l'override n'a de sens que si le DS prévoit une sidebar typée (ex: branding sombre permanent).
 
 ### `--font-sans` / `--font-mono` / `--font-heading`
-Si la section Typography ne précise pas :
+Si `## 3. Typography Rules` ne précise pas :
 - `--font-sans: 'Inter', system-ui, sans-serif`
 - `--font-mono: 'JetBrains Mono', ui-monospace, monospace`
 - `--font-heading: var(--font-sans)` (réutilise sans)

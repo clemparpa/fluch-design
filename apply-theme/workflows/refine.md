@@ -25,31 +25,31 @@ Read designs/active.md
 
 ## STEP 2 — Traduire la demande user en modif ciblée
 
-L'agent identifie quelle(s) section(s) du DESIGN.md doi(ven)t changer. Table de référence (non exhaustive) :
+L'agent identifie quelle(s) section(s) du DESIGN.md doi(ven)t changer. Table de référence (non exhaustive), format des sections aligné sur le schéma open-design :
 
 | Demande user | Section cible | Action |
 |---|---|---|
-| « primary plus chaud » | Color → primary (Light + Dark) | Décaler H vers 30–60° en conservant L/C |
-| « primary plus saturé » | Color → primary (Light + Dark) | Augmenter C de 0.05–0.10 |
-| « primary plus pâle » | Color → primary (Light + Dark) | Augmenter L de 0.05 (light) / réduire C |
-| « fond plus sombre » (light) | Color → background (Light) | Baisser L de 0.03–0.05 |
-| « fond plus sombre » (dark) | Color → background (Dark) | Baisser L de 0.02–0.03 |
-| « plus de contraste » | Color → foreground vs background | Écarter les L des deux |
-| « radius plus grand » | Components → Radius | Augmenter d'un cran (+0.125rem ou +0.25rem) |
-| « pas de radius » / « carré » | Components → Radius | Mettre à 0 |
-| « typographie serif » | Typography → sans | Remplacer stack par serif (Playfair, Lora, etc.) |
-| « font plus moderne » | Typography → sans | Stack moderne (Inter, Geist, Söhne...) |
-| « anim plus rapide » | Motion → Durations | Réduire base de 50–100ms |
-| « pas d'anim » | Motion | Mettre toutes durations à 0ms |
+| « primary plus chaud » | `## 2. Color Palette & Roles` → `### Primary Brand` (light + `### Dark Mode`) | Décaler H vers 30–60° en conservant L/C |
+| « primary plus saturé » | `## 2. ...` → `### Primary Brand` | Augmenter C de 0.05–0.10 |
+| « primary plus pâle » | `## 2. ...` → `### Primary Brand` | Augmenter L de 0.05 (light) / réduire C |
+| « fond plus sombre » (light) | `## 2. ...` → `### Neutrals` (Canvas/Surface light) | Baisser L de 0.03–0.05 |
+| « fond plus sombre » (dark) | `## 2. ...` → `### Dark Mode` (Canvas/Surface dark) | Baisser L de 0.02–0.03 |
+| « plus de contraste » | `## 2. ...` → `### Text` (Title) vs `### Neutrals` (Canvas) | Écarter les L des deux |
+| « radius plus grand » | `## 4. Component Stylings` → `### Cards` ou `### Buttons` (mention `Radius`) | Augmenter d'un cran (+0.125rem ou +0.25rem) |
+| « pas de radius » / « carré » | `## 4. ...` → Radius | Mettre à 0 |
+| « typographie serif » | `## 3. Typography Rules` → `### Font Family` | Remplacer stack par serif (Playfair, Lora, etc.) |
+| « font plus moderne » | `## 3. ...` → `### Font Family` | Stack moderne (Inter, Geist, Söhne...) |
+| « anim plus rapide » | `## 6. Depth & Elevation` (prose motion) | Réduire la durée mentionnée |
+| « pas d'anim » | `## 6. ...` | Mettre les durations à 0ms ou retirer la mention |
 
-Pour des demandes plus floues (« ça fait pas pro », « ça manque de chaleur »), poser **une** question de clarification : "Tu veux ajuster la palette, la typo ou les radius en priorité ?"
+Pour des demandes plus floues (« ça fait pas pro », « ça manque de chaleur »), poser **une** question de clarification : "Tu veux ajuster la palette, la typo ou les radii en priorité ?"
 
 ## STEP 2 bis — Anti-pattern check
 
-Avant d'écrire, lire la section 9 (Anti-patterns) du DESIGN.md. Si la modif demandée par l'user contredit un anti-pattern explicite :
+Avant d'écrire, lire la sous-liste `### Don't` (ou variante « Don'ts », « Avoid », « Never ») de `## 7. Do's and Don'ts`. Si la modif demandée par l'user contredit un anti-pattern explicite :
 
 ```
-⚠️ Ta demande contredit un anti-pattern noté dans le design system :
+⚠️ Ta demande contredit un anti-pattern noté dans `## 7. Do's and Don'ts → Don't` :
   "<anti-pattern verbatim>"
 
 Confirme que tu veux quand même l'appliquer (ça assouplira le système) ?
@@ -65,7 +65,7 @@ Attendre la réponse user avant de continuer.
 Write designs/active.md <contenu complet avec modif>
 ```
 
-Vérifier mentalement les 9 H2 avant d'écrire.
+Vérifier mentalement les 9 H2 numérotés avant d'écrire (cf. `references/design-md-schema.md`).
 
 ## STEP 3 — Re-read (audit trail)
 

@@ -107,17 +107,18 @@ Avant le STEP 4 dans tous les workflows :
 
 ```
 Read designs/active.md
-Grep "Dark:" dans la section ## Color
-Compter les hex/oklch sous Dark:
+Grep "^### Dark Mode$" dans la section ## 2. Color Palette & Roles
+Compter les hex / rgba / oklch dans ce sous-bloc
 ```
 
-Si moins de 4 valeurs sous `Dark:` → refus net :
+Si le sous-bloc `### Dark Mode` est absent OU contient moins de 4 valeurs colorimétriques entre backticks → refus net :
 
 ```
-❌ Pas de palette dark dans designs/active.md (moins de 4 couleurs sous "Dark:").
+❌ Pas de palette dark dans designs/active.md (sous-bloc `### Dark Mode` manquant
+   ou moins de 4 couleurs dedans).
 
 shadcn impose un bloc .dark dans globals.css. Tu as 3 options :
-1. Fournis les hex dark pour primary, background, foreground, destructive
+1. Fournis les hex dark pour Canvas, Title, Primary, Danger (minimum)
 2. (non disponible v1) Auto-derive depuis le light
 3. Abandon
 ```

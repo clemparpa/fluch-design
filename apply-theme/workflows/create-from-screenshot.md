@@ -63,22 +63,30 @@ Reporter une valeur unique pour `--radius` (la plus représentative).
 
 ## STEP 1.5 — Confirmer avec l'user
 
-**Toujours** afficher tes observations avant d'écrire le DESIGN.md :
+**Toujours** afficher tes observations avant d'écrire le DESIGN.md (format final = open-design canonique) :
 
 ```
-Voilà ce que j'ai extrait de l'image :
+Voilà ce que j'ai extrait de l'image, à intégrer dans `## 2. Color Palette & Roles` :
 
-Couleurs (Light) :
-- primary: #635bff
-- background: #ffffff
-- foreground: #0a2540
-- destructive: #df1b41
+### Primary Brand
+- Primary: #635bff
 
-Typo : Inter (sans), JetBrains Mono (mono)
-Radius : ~0.375rem
-Ambiance : corporate épuré, contraste élevé, mood froid/professionnel
+### Neutrals
+- Canvas: #ffffff
+- Surface: #ffffff
 
-L'image semble être en mode light. Pour le dark, je peux :
+### Text
+- Title: #0a2540
+- Paragraph: #425466
+
+### Semantic
+- Danger: #df1b41
+
+Typo (## 3. Typography Rules → ### Font Family) : Inter (sans), JetBrains Mono (mono)
+Radius (## 4. Component Stylings) : ~0.375rem
+Ambiance (## 1. Visual Theme) : corporate épuré, contraste élevé, mood froid/professionnel
+
+L'image semble être en mode light. Pour le sous-bloc `### Dark Mode`, je peux :
 1. Te demander 4 hex dark
 2. Proposer 4 hex dark cohérents et tu valides
 3. Abandonner
@@ -102,11 +110,12 @@ Toujours dark mode obligatoire avant STEP 2.
 
 Une fois user OK + dark obtenu :
 
-Construire le DESIGN.md complet (9 sections) selon `references/design-md-schema.md`. Inférer les sections non visibles dans l'image :
-- Spacing & Grid : défaut sauf si la densité est très clairement particulière
-- Motion : laisser vide (pas observable dans un screenshot statique)
-- Voice & Brand : 2 phrases inférées du contexte visible
-- Anti-patterns : 3–5 don'ts cohérents avec l'esthétique
+Construire le DESIGN.md complet (9 sections numérotées) selon [`references/design-md-schema.md`](../references/design-md-schema.md). Inférer les sections non visibles dans l'image :
+- `## 5. Layout Principles` : décrire les patterns visibles (grille, hero, density)
+- `## 6. Depth & Elevation` : depth observable (shadows présents/absents) ; motion = laisser flat (pas observable dans un screenshot statique)
+- `## 7. Do's and Don'ts` : 3–5 items par sous-liste, cohérents avec l'esthétique observée
+- `## 8. Responsive Behavior` : défaut Tailwind v4 (rarement déductible d'un screenshot unique)
+- `## 9. Agent Prompt Guide` : 2–3 phrases de voice inférées du contexte visible
 
 ```
 Write designs/active.md <contenu complet>
